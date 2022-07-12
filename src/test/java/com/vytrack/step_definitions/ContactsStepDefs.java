@@ -80,11 +80,12 @@ public class ContactsStepDefs {
     public void the_information_should_be_same_with_database() {
      BrowserUtils.waitFor(4);
      //get the information from UI
+
         ContactInfoPage contactInfoPage = new ContactInfoPage();
-        String actualFullname = contactInfoPage.contactFullName.getText();
+        String actualFullName = contactInfoPage.contactFullName.getText();
         String actualEmail = contactInfoPage.email.getText();
 
-        System.out.println("actualFullname = " + actualFullname);
+        System.out.println("actualFullName = " + actualFullName);
         System.out.println("actualEmail = " + actualEmail);
 
 
@@ -95,20 +96,26 @@ public class ContactsStepDefs {
                 "where e.email = 'mrjakc@mail.ru'";
 
         //create the connection to qa3 env
-       // DBUtils.createConnection();
+        DBUtils.createConnection();
         //get the data in java collections
         Map<String, Object> rowMap = DBUtils.getRowMap(query);
-        String expectedFullname = (String) rowMap.get("full_name");
+        String expectedFullName = (String) rowMap.get("full_name");
         String expectedEmail = (String) rowMap.get("email");
 
-        System.out.println("expectedFullname = " + expectedFullname);
-        System.out.println("expectedEmail = " + expectedEmail);
+        System.out.println("expectedFullName = " + expectedFullName);  // dataBase 'den gelen bilgi
+        System.out.println("expectedEmail = " + expectedEmail);   // dataBase 'den gelen bilgi
         //close connection
-       // DBUtils.destroy();
+        DBUtils.destroy();
 
         //assertion, compare UI vs DATABASE information
-        Assert.assertEquals(expectedFullname,actualFullname);
+        Assert.assertEquals(expectedFullName,actualFullName);
         Assert.assertEquals(expectedEmail,actualEmail);
+
+
+
+
+
+
 
     }
 
