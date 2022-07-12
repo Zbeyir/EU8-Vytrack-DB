@@ -23,7 +23,6 @@ Feature: Contacts page
       | System     |
 
 
-
   Scenario: Menu Options Sales Manager
     Given the user logged in as "sales manager"
     Then the user should see following options
@@ -61,22 +60,27 @@ Feature: Contacts page
       | user10         | Brenden   | Schneider |
       | storemanager85 | Stephan   | Haley     |
 
- @db @wip
-    Scenario: Contact test with email
-      Given the user logged in as "sales manager"
-      And the user navigates to "Customers" "Contacts"
-      When the user clicks the "mrjakc@mail.ru" from contacts
-      Then the information should be same with database
 
-   @db
-   Scenario: Contact test with email
+    # biz cemal ile day6 da sadece burdan sonrasini yaptik
+    #6.gün cemal ile DataBase de yaptik
+    #AMAA BU @db runner 'a  yazmaya gerek yok sadece feature ile Hooks arasinda bir baglanti sagliyor
+  #yani feature sadec @wip yaziyoruz oki?
+
+  @db
+  Scenario: Contact test with email
+    Given the user logged in as "sales manager"
+    And the user navigates to "Customers" "Contacts"
+    When the user clicks the "mrjakc@mail.ru" from contacts
+    Then the information should be same with database
+
+  @db
+  Scenario: Contact test with email
     Given the user logged in as "sales manager"
     And the user navigates to "Customers" "Contacts"
     When the user clicks the "jakop@gmail.com" from contacts
     Then the information for "jakop@gmail.com" should be same with database
 
-
-   @db
+  @wip @db
   Scenario Outline: Contact test with email
     Given the user logged in as "sales manager"
     And the user navigates to "Customers" "Contacts"
@@ -84,10 +88,10 @@ Feature: Contacts page
     Then the information for "<email>" should be same with database
 
     Examples:
-    |email|
-    |mbrackstone9@example.com|
-    |jakop@gmail.com|
-    |oscar@gmail.com  |
+      | email                    |
+      | mbrackstone9@example.com |
+      | jakop@gmail.com          |
+      | oscar@gmail.com          |
 
 
 

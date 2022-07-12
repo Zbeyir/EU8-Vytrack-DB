@@ -12,6 +12,11 @@ import java.util.concurrent.TimeUnit;
 
 public class Hooks {
 
+    /**
+     *  biz cemal ile day6 da sadece burdan sonrasini yaptik
+     */
+
+
     @Before
     public void setUp(){
         System.out.println("\tthis is coming from BEFORE");
@@ -27,9 +32,16 @@ public class Hooks {
             scenario.attach(screenshot,"image/png","screenshot");
         }
 
-     //   Driver.closeDriver();
+        Driver.closeDriver();
 
     }
+
+    /**
+     * yukarudakiler normal UI DEN GELEN ACMA KAPAM
+     * Assagidakiler DataBase den gele acma kapakar
+     *veeee @db yazmayi unut ma veya db yerine herhangibirsey de yazabiliriz
+     * AMAA BU @db runner 'a  yazmaya gerek yok sadece feature ile Hooks arasinda bir baglanti sagliyor
+     */
 
     @Before("@db")
     public void setUpDB(){

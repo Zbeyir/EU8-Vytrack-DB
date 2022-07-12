@@ -76,6 +76,8 @@ public class ContactsStepDefs {
 
     }
 
+    // biz cemal ile day6 da sadece burdan sonrasini yaptik
+
     @Then("the information should be same with database")
     public void the_information_should_be_same_with_database() {
      BrowserUtils.waitFor(4);
@@ -95,8 +97,10 @@ public class ContactsStepDefs {
                 "on c.id = e.owner_id \n" +
                 "where e.email = 'mrjakc@mail.ru'";
 
-        //create the connection to qa3 env
-        DBUtils.createConnection();
+        //bu yukarida kini data base den kopyalidik 6.GÜN Vytrack Qa2
+
+        //create the connection to qa2 env
+       // DBUtils.createConnection();  //------> bunu kapattik cünkü hooks ta actik haci:)
         //get the data in java collections
         Map<String, Object> rowMap = DBUtils.getRowMap(query);
         String expectedFullName = (String) rowMap.get("full_name");
@@ -105,7 +109,7 @@ public class ContactsStepDefs {
         System.out.println("expectedFullName = " + expectedFullName);  // dataBase 'den gelen bilgi
         System.out.println("expectedEmail = " + expectedEmail);   // dataBase 'den gelen bilgi
         //close connection
-        DBUtils.destroy();
+        // DBUtils.destroy();  //------> bunu kapattik cünkü hooks ta actik haci:)
 
         //assertion, compare UI vs DATABASE information
         Assert.assertEquals(expectedFullName,actualFullName);
@@ -136,8 +140,12 @@ public class ContactsStepDefs {
                 "from orocrm_contact c inner join orocrm_contact_email e \n" +
                 "on c.id = e.owner_id \n" +
                 "where e.email = '"+email+"'";
+    // burada yukari da kin den farkli olarak email 'i data base den geleni dynamic yaptik
+    // artik feature 'da email olark ne girersek burayada o yazilacak#
+    // bir önceki ile bunun farki sadece bu ve mantikli olani di bu hersey dynamic olmali
 
-        //create the connection to qa3 env
+
+        //create the connection to qa2 env
         // DBUtils.createConnection();
         //get the data in java collections
         Map<String, Object> rowMap = DBUtils.getRowMap(query);
